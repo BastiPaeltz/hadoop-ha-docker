@@ -28,7 +28,7 @@ At this point both volumes hold the initial cluster state and can be used as a m
 
 6. Start both NameNodes (separate terminals)  
 ```docker run --hostname=nn1 -p 50060:50070 --name=nn1 -it -e "NNODE1_IP=nn1" -e "NNODE2_IP=nn2" -e "JN_IPS=jn-1:8485" -e "ZK_IPS=zk-1:2181" --net=hadoop -v /tmp/hadoop-nn1:/mnt/hadoop bastipaeltz/hadoop-ha-docker /etc/bootstrap.sh -d namenode```  
-```docker run --hostname=nn2 --name=nn2 -p 50070:50070 -it -e "NNODE1_IP=nn1" -e "NNODE2_IP=nn2" -e "JN_IPS=jn-1:8485" -e "ZK_IPS=zk-1:2181" --net=hadoop -v /tmp/hadoop-nn2:/mnt/hadoop bastipaeltz/hadoop /etc/bootstrap.sh -d namenode```
+```docker run --hostname=nn2 -p 50070:50070 --name=nn2 -it -e "NNODE1_IP=nn1" -e "NNODE2_IP=nn2" -e "JN_IPS=jn-1:8485" -e "ZK_IPS=zk-1:2181" --net=hadoop -v /tmp/hadoop-nn2:/mnt/hadoop bastipaeltz/hadoop-ha-docker /etc/bootstrap.sh -d namenode```
 
 Now both NameNodes should be running, check it by visiting the WebUI on Port 50060 (nn1) and 50070 (nn2). nn2 should be `standby` while nn1 is `active`.
 
